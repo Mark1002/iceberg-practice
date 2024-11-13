@@ -5,10 +5,16 @@ services:
   nessie:
     image: projectnessie/nessie:latest
     container_name: nessie
+    environment:
+      - QUARKUS_PROFILE=prod
+      - QUARKUS_HTTP_PORT=19120
+      - nessie.version.store.type=ROCKSDB
+    volumes:
+      - ./nessie:/tmp/nessie-rocksdb-store  # Mount local directory to persist RocksDB data
+    ports:
+      - 19120:19120  # Expose Nessie API port
     networks:
       iceberg-network:
-    ports:
-      - 19120:19120
   # Minio Storage Server
   minio:
     image: minio/minio:latest
@@ -24,7 +30,15 @@ services:
     ports:
       - 9001:9001
       - 9000:9000
-    command: ["server", "/data", "--console-address", ":9001"]
+    volumes:
+      - ./minio/data:/data
+    entrypoint: >
+      /bin/sh -c "
+      minio server /data --console-address ':9001' &
+      sleep 5;
+      mc alias set myminio http://localhost:9000 admin password;
+      mc mb myminio/datalakehouse;
+      tail -f /dev/null"
   # Dremio
   dremio:
     platform: linux/x86_64
@@ -38,5 +52,9 @@ services:
       - DREMIO_JAVA_SERVER_EXTRA_OPTS=-Dpaths.dist=file:///opt/dremio/data/dist
     networks:
       iceberg-network:
+    volumes:
+      - ./dremio/data:/opt/dremio/data
+      - ./dremio/lib:/var/lib/dremio
+      - ./dremio/local:/localFiles
 networks:
   iceberg-network:

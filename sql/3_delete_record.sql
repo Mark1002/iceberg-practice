@@ -1,0 +1,1 @@
+DELETE FROM nessie.people WHERE age < 30;

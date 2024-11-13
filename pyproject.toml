@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "iceberg-practice"
+version = "0.1.0"
+description = ""
+authors = ["Mark Chang <mark.chang@vpon.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+dremio-simple-query = "^0.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
