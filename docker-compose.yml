@@ -56,5 +56,18 @@ services:
       - ./dremio/data:/opt/dremio/data
       - ./dremio/lib:/var/lib/dremio
       - ./dremio/local:/localFiles
+  # Trino
+  trino:
+    image: trinodb/trino:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino/iceberg.properties:/etc/trino/catalog/iceberg.properties
+      - ./trino/sql:/etc/trino/sql
+    networks:
+      iceberg-network:
+    depends_on:
+      - minio
+      - nessie
 networks:
   iceberg-network:

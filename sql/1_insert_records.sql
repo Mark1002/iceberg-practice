@@ -1,4 +1,4 @@
-INSERT INTO nessie.people (id, first_name, last_name, age) VALUES
+INSERT INTO nessie.schema1.people (id, first_name, last_name, age) VALUES
 (1, 'John', 'Doe', 28),
 (2, 'Jane', 'Smith', 34),
 (3, 'Alice', 'Johnson', 22),

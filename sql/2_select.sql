@@ -1,1 +1,1 @@
-SELECT * FROM nessie.people;
+SELECT * FROM nessie.schema1.people;

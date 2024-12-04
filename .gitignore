@@ -181,3 +181,5 @@ minio/*
 !minio/.gitkeep
 nessie/*
 !nessie/.gitkeep
+data/*
+!data/.gitkeep
