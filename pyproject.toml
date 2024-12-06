@@ -10,6 +10,7 @@ python = "3.11.3"
 dremio-simple-query = "^0.0.4"
 ipykernel = "^6.29.5"
 pyiceberg = {extras = ["s3fs"], version = "^0.8.0"}
+trino = "^0.330.0"
 
 
 [build-system]
