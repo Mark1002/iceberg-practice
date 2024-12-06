@@ -1,2 +1,0 @@
-select * FROM nessie.people
-AT SNAPSHOT '8257576609807777012';

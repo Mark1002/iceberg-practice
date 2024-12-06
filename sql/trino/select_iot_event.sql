@@ -1,0 +1,1 @@
+select count(1) from iceberg.iot_sensor.equipment_data;

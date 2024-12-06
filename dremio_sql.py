@@ -1,3 +1,4 @@
+"""This python script is used to perform sql query on dremio."""
 import os
 import sys
 from dremio_simple_query.connect import get_token, DremioConnection
@@ -30,4 +31,4 @@ if __name__ == "__main__":
     sqlfiles = os.listdir("sql")
     sqlfiles.sort()
     sql_index = int(sys.argv[1])
-    perform_dremio_query(conn, f"sql/{sqlfiles[sql_index]}")
+    perform_dremio_query(conn, f"sql/dremio/{sqlfiles[sql_index]}")

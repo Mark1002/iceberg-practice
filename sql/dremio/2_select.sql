@@ -1,0 +1,1 @@
+SELECT * FROM nessie.schema1.people;
